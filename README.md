@@ -12,6 +12,11 @@ Die Bildschirmaufnahme zeigt das Würfeln, das Festhalten einzelner Würfel sowi
 [Video auf GitHub ansehen](HIER_DEN_ECHTEN_VIDEO_LINK_EINFÜGEN)
 -->
 
+## Kurze Videodemo
+Die Bildschirmaufnahme zeigt das Würfeln, das Festhalten einzelner Würfel sowie die Zuordnung und Berechnung der Punkte.
+
+https://github.com/user-attachments/assets/ea406472-7968-4fc1-a44f-3675eb7e4f7f
+
 ## Funktionen
 
 - Fünf Würfel mit Bildern aus dem lokalen `img/`-Ordner (`1.png` bis `6.png`).
