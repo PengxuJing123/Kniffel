@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<!-- Titel im Browser -->
+		<title>Kniffel - Praktikantenaufgabe</title>
+
+		<!-- Zeichenkodierung bestimmen -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<!-- Stylesheet und Javascript einbinden -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Alle Würfel -->
+			<button class="dice" onclick="toggleDice(this)"></button>
+			<!-- this ist der Zeiger auf das HTML Element, welches das Ereignis, hier onclick, auslöst -->
+			<button class="dice" onclick="toggleDice(this)"></button>
+			<button class="dice" onclick="toggleDice(this)"></button>
+			<button class="dice" onclick="toggleDice(this)"></button>
+			<button class="dice" onclick="toggleDice(this)"></button>
+
+			<!-- Button zum Würfeln -->
+			<button id="roll" onclick="rollDices()">Würfeln</button>
+
+			<!-- Wertetabelle -->
+			<table>
+				<tbody>
+					<!-- Alle Einser zählen -->
+					<tr>
+						<th>Einser</th>
+						<td onclick="assignDices(this, 1)"></td>
+					</tr>
+
+					<!-- Alle Zweier zählen -->
+					<tr>
+						<th>Zweier</th>
+						<td onclick="assignDices(this, 2)"></td>
+					</tr>
+
+					<!-- Punktefelder für Dreier, Vierer, Fünfer, Sechser, Dreierpasch und Viererpasch -->
+					<tr>
+						<th>Dreier</th>
+						<td onclick="assignDices(this, 3)"></td>
+					</tr>
+
+					<tr>
+						<th>Vierer</th>
+						<td onclick="assignDices(this, 4)"></td>
+					</tr>
+
+					<tr>
+						<th>Fünfer</th>
+						<td onclick="assignDices(this, 5)"></td>
+					</tr>
+
+					<tr>
+						<th>Sechser</th>
+						<td onclick="assignDices(this, 6)"></td>
+					</tr>
+
+					<tr>
+						<th>Dreierpasch</th>
+						<td onclick="assignDices(this, 'Dreierpasch')"></td>
+					</tr>
+
+					<tr>
+						<th>Viererpasch</th>
+						<td onclick="assignDices(this, 'Viererpasch')"></td>
+					</tr>
+
+					<!-- Zusätzliche Punktefelder für die Zusatzaufgaben 11-15 -->
+					<tr>
+						<th>Full House</th>
+						<td onclick="assignDices(this, 'FullHouse')"></td>
+					</tr>
+
+					<tr>
+						<th>Kleine Straße</th>
+						<td onclick="assignDices(this, 'KleineStrasse')"></td>
+					</tr>
+					
+					<tr>
+						<th>Große Straße</th>
+						<td onclick="assignDices(this, 'GrosseStrasse')"></td>
+					</tr>
+					
+					<tr>
+						<th>Kniffel</th>
+						<td onclick="assignDices(this, 'Kniffel')"></td>
+					</tr>
+					
+					<tr>
+						<th>Chance</th>
+						<td onclick="assignDices(this, 'Chance')"></td>
+					</tr>
+
+					<!-- Bonus-Feld (für 35 Bonuspunkte bei mindestens 63 Punkten im oberen Bereich) -->
+					<tr>
+						<th>Bonus</th>
+						<td id="bonus">0</td>
+					</tr>
+
+					<!-- Gesamtpunktzahl -->
+					<tr>
+						<th>Gesamt</th>
+						<td id="score">0</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
