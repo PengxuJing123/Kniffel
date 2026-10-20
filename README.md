@@ -2,15 +2,11 @@
 
 Ein kleines, im Browser spielbares Kniffel-Projekt mit **HTML, CSS und Vanilla JavaScript**. Der Fokus liegt auf Spielregeln, Zustandsverwaltung, DOM-Interaktionen und der nachvollziehbaren Punkteberechnung – ohne Frameworks, Backend oder externe Bibliotheken.
 
-## Vorschau
+## Kurze Videodemo
 
-![Kniffel im Browser nach dem ersten Wurf](docs/kniffel-screenshot.png)
+Die Bildschirmaufnahme zeigt das Würfeln, das Festhalten einzelner Würfel sowie die Zuordnung und Berechnung der Punkte.
 
-<!-- Optional nach eigener Aufnahme ergänzen: 
-## Kurzvideo
-Kurze Bildschirmaufnahme: Würfel werfen und halten, Punkte zuweisen und das Würfelprotokoll anzeigen.
-[Hier die echte GitHub-Asset-Adresse nach dem Upload einfügen.]
--->
+https://github.com/user-attachments/assets/ea406472-7968-4fc1-a44f-3675eb7e4f7f
 
 ## Funktionen
 
