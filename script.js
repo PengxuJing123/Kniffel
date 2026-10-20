@@ -1,91 +1,73 @@
-/**
- * Gesamtpunktzahl
- *
- * @var number
+/** Gesamtpunktzahl der bereits eingetragenen Wertungen.
+ * @type {number}
  */
 var score = 0;
 
-/**
- * Anzahl der getätigten Würfe in dieser Runde
- *
- * @var number
+/** Anzahl der bisherigen Würfe im aktuellen Spielzug.
+ * @type {number}
  */
 var rolled = 0;
 
-/**
- * Alle aktuellen Würfelwerte
- *
- * @var array
+/** Aktuelle Werte der fünf Würfel.
+ * @type {number[]}
  */
 var values = [];
 
-/**
- * Punkte für das obere Feld (Einser bis Sechser) für den Bonus
- * 
- * @var number
+/** Bisherige Punkte im oberen Block (Einser bis Sechser).
+ * @type {number}
  */
 var upperScore = 0;
 
-/**
- * Globale Nachricht bei Spielende
- * 
- * @var string
- */
+
 var GAME_OVER_MESSAGE = "Spiel zu Ende!";
 
-/**
- * Alle Würfel werfen
- *
- * @return void
- */
+/** Würfelt nicht gehaltene Würfel und aktualisiert den Rundenstatus. */
 function rollDices() {
-	// Alle HTML Elemente mit der CSS Klasse "dice" ermitteln
+	
 	var dices = document.getElementsByClassName('dice');
 
-	// Die aktuellen Würfelwerte zurücksetzen
+	
 	values = [];
 
 	for (var i = 0; i < dices.length; i++) {
-		// Würfel nicht würfeln, wenn dieser gehalten wird
+		// Gehaltene Würfel behalten ihren bisherigen Wert.
 		if (dices[i].hasAttribute('data-hold')) {
 			values.push(parseInt(dices[i].value));
 			continue;
 		}
 
-		// Eine Zufallszahl zwischen 1 und 6 generieren und dem Würfel zuweisen
+		
 		dices[i].value = Math.floor((Math.random() * 6) + 1);
 
-		// Aktuellen Würfelwert merken
+		
 		var value = parseInt(dices[i].value);
 		values.push(value);
 	}
 
-	// Anzahl der getätigten Würfe erhöhen
+	
 	rolled++;
 }
 
-/**
- * Würfel einem Feld zuweisen
- *
- * @param HTMLElement field
- * @param mixed type
- * @return void
+/** Berechnet die gewählte Wertung und trägt sie in die Tabelle ein.
+ * @param {HTMLElement} field - Zelle der Wertungstabelle.
+ * @param {number|string} type - Wertungskategorie.
+ * @returns {void}
  */
 function assignDices(field, type) {
-	// Verhindern, dass Punkte zugewiesen werden, bevor mindestens einmal gewürfelt wurde
+	// Wertungen sind erst nach dem ersten Wurf möglich.
 	if (rolled === 0) {
 		return;
 	}
 
-	// Verhindern, dass ein Feld mehr als einmal belegt wird
+	
 	if (field.innerHTML !== '' && field.innerHTML !== '0') {
 		return;
 	}
 
-	// Die zu vergebenden Punkte
+	
 	var points = 0;
 
-	// Berechnung der Punkte basierend auf dem übergebenen Typ
+	
 	switch (type) {
 		case 1:
 		case 2:
@@ -119,35 +101,33 @@ function assignDices(field, type) {
 			break;
 	}
 
-	// Punkte zuweisen
+	
 	field.innerHTML = points;
 
-	// Gesamtpunktzahl erhöhen und in das HTML Element mit der ID score schreiben
+	
 	score += points;
 
-	// Bonus berechnen (mindestens 63 Punkte im oberen Bereich)
+	// Der Bonus wird einmalig ab 63 Punkten im oberen Block vergeben.
 	var bonusElement = document.getElementById('bonus');
 	if (upperScore >= 63 && bonusElement.innerHTML === '0') {
 		bonusElement.innerHTML = 35;
-		// Bonuspunkte zur Gesamtpunktzahl hinzufügen
+		
 		score += 35;
 	}
 
-	// Gesamtpunktzahl aktualisieren
+	
 	document.getElementById('score').innerHTML = score;
 
-	// Runde zurücksetzen
+	
 	resetRound();
 
-	// Prüfen ob das Spiel vorbei ist
+	
 	checkGameOver();
 }
 
-/**
- * Einser bis Sechser berechnen
- *
- * @param number num
- * @return number
+/** Addiert die Würfel mit dem angegebenen Augenwert.
+ * @param {number} num - Augenwert von 1 bis 6.
+ * @returns {number}
  */
 function getEinserBisSechser(num) {
 	var points = 0;
@@ -161,11 +141,9 @@ function getEinserBisSechser(num) {
 	return points;
 }
 
-/**
- * Pasch berechnen
- *
- * @param number num
- * @return number
+/** Ermittelt die Augensumme, falls mindestens `num` gleiche Würfel vorliegen.
+ * @param {number} num - Benötigte Anzahl gleicher Würfel.
+ * @returns {number}
  */
 function getPasch(num) {
 	var points = 0;
@@ -188,10 +166,8 @@ function getPasch(num) {
 	return points;
 }
 
-/**
- * Zählt, wie oft jeder Wert vorkommt
- * 
- * @return object
+/** Zählt die Häufigkeit jedes Würfelwertes.
+ * @returns {Object<string, number>}
  */
 function getCounts() {
 	var counts = {};
@@ -201,11 +177,8 @@ function getCounts() {
 	return counts;
 }
 
-/**
- * Full House berechnen
- * Ein Full House besteht aus einem Drilling und einem Paar (z.B. 3, 3, 3, 5, 5).
- * 
- * @return number
+/** Prüft auf drei gleiche und zwei weitere gleiche Würfel (Full House).
+ * @returns {number}
  */
 function getFullHouse() {
 	var counts = getCounts();
@@ -221,11 +194,8 @@ function getFullHouse() {
 	return (hasTwo && hasThree) ? 25 : 0;
 }
 
-/**
- * Kleine Straße berechnen.
- * Eine kleine Straße besteht aus vier aufeinanderfolgenden Werten (z.B. 1, 2, 3, 4).
- *
- * @return number
+/** Prüft auf mindestens vier aufeinanderfolgende Würfelwerte.
+ * @returns {number}
  */
 function getKleineStrasse() {
 	var sortedUnique = getSortedUnique();
@@ -235,11 +205,8 @@ function getKleineStrasse() {
 	return 0;
 }
 
-/**
- * Große Straße berechnen.
- * Eine große Straße besteht aus fünf aufeinanderfolgenden Werten (z.B. 1, 2, 3, 4, 5).
- *
- * @return number
+/** Prüft auf fünf aufeinanderfolgende Würfelwerte.
+ * @returns {number}
  */
 function getGrosseStrasse() {
 	var sortedUnique = getSortedUnique();
@@ -249,11 +216,8 @@ function getGrosseStrasse() {
 	return 0;
 }
 
-/**
- * Erzeugt einen sortierten String aller eindeutigen Würfelwerte.
- * Beispiel: [3, 1, 3, 5, 2] -> "1235"
- *
- * @return string
+/** Gibt die verschiedenen Augenwerte sortiert als Zeichenkette zurück.
+ * @returns {string}
  */
 function getSortedUnique() {
 	var uniqueValues = [...new Set(values)];
@@ -261,11 +225,8 @@ function getSortedUnique() {
 	return uniqueValues.join('');
 }
 
-/**
- * Kniffel berechnen.
- * Ein Kniffel liegt vor, wenn alle fünf Würfel denselben Wert zeigen.
- *
- * @return number
+/** Vergibt 50 Punkte, wenn alle fünf Würfel denselben Wert zeigen.
+ * @returns {number}
  */
 function getKniffel() {
 	var counts = getCounts();
@@ -277,11 +238,8 @@ function getKniffel() {
 	return 0;
 }
 
-/**
- * Summe aller aktuellen Würfelwerte berechnen.
- * Wird für die Chance verwendet.
- *
- * @return number
+/** Addiert die aktuellen Würfelwerte (Chance).
+ * @returns {number}
  */
 function getSum() {
 	var sum = 0;
@@ -291,12 +249,8 @@ function getSum() {
 	return sum;
 }
 
-/**
- * Prüft, ob alle Punktefelder ausgefüllt sind, und beendet das Spiel,
- * wenn keine weiteren Einträge mehr möglich sind.
- * Der Würfel-Button wird deaktiviert und ein Hinweis wird angezeigt.
- *
- * @return void
+/** Beendet die Partie, wenn alle Wertungsfelder ausgefüllt sind.
+ * @returns {void}
  */
 function checkGameOver() {
 	var cells = document.querySelectorAll('td[onclick]');
@@ -315,49 +269,45 @@ function checkGameOver() {
 	}
 }
 
-/**
- * Diese Runde zurücksetzen
- *
- * @return void
+/** Setzt die Würfel und den Würfelzähler für den nächsten Spielzug zurück.
+ * @returns {void}
  */
 function resetRound() {
 	var dices = document.getElementsByClassName('dice');
 
 	for (var i = 0; i < dices.length; i++) {
-		// Alle Würfel loslassen
+		
 		dices[i].removeAttribute('data-hold');
 
-		// Alle Würfelwerte zurücksetzen
+		
 		dices[i].value = 0;
 	}
 
-	// Alle gemerkten Würfelwerte zurücksetzen
+	
 	values = [];
 
-	// Anzahl der getätigten Würfe zurücksetzen
+	
 	rolled = 0;
 }
 
-/**
- * Würfel halten oder loslassen
- *
- * @param HTMLElement dice
- * @return void
+/** Wechselt zwischen gehaltenem und freiem Würfel.
+ * @param {HTMLElement} dice - Angeklickter Würfel.
+ * @returns {void}
  */
 function toggleDice(dice) {
-	// Verhindern, dass die Würfel gehalten oder gelassen werden, bevor mindestens einmal gewürfelt wurde
+	// Vor dem ersten Wurf dürfen Würfel nicht gehalten werden.
 	if (rolled === 0) {
 		return;
 	}
 
 	if (dice.getAttribute('data-hold')) {
-		// Das HTML Attribut "data-hold" existiert bereits und wird entfernt
+		
 		dice.removeAttribute('data-hold');
 	} else {
-		// Das HTML Attribut "data-hold" existiert noch nicht und wird gesetzt
+		
 		dice.setAttribute('data-hold', 1);
 	}
 
-	// Fokus auf diesen Würfel entfernen
+	
 	dice.blur();
 }

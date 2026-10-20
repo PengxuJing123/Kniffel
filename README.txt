@@ -1,4 +1,4 @@
-# Kniffel – Würfelspiel mit JavaScript
+# Kniffel – JavaScript-Übungsprojekt
 
 Ein kleines, im Browser spielbares Kniffel-Projekt mit **HTML, CSS und Vanilla JavaScript**. Der Fokus liegt auf Spielregeln, Zustandsverwaltung, DOM-Interaktionen und der nachvollziehbaren Punkteberechnung – ohne Frameworks, Backend oder externe Bibliotheken.
 

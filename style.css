@@ -1,19 +1,19 @@
 @charset "UTF-8";
 
 @media all {
-	/* Allgemeine Darstellung */
+	
 	html, body {
 		font-family: Verdana, Arial, Helvetica;
 	}
 
-	/* Spielfeld zentrieren */
+	
 	.container {
 		width: 50%;
 		margin: auto;
 		text-align: center;
 	}
 
-	/* Darstellung eines Würfels */
+	/* Darstellung der Würfel über Bilder aus img/. */
 	.dice {
 		width: 50px;
 		height: 50px;
@@ -26,68 +26,68 @@
 		background-size: contain;
 	}
 
-	/* Würfel mit dem Wert 1 */
+	
 	.dice[value="1"] {
 		background-image: url("img/1.png");
 	}
 
-	/* Würfel mit dem Wert 2 */
+	
 	.dice[value="2"] {
 		background-image: url("img/2.png");
 	}
 
-	/* Würfel mit dem Wert 3 */
+	
 	.dice[value="3"] {
 		background-image: url("img/3.png");
 	}
 
-	/* Würfel mit dem Wert 4 */
+	
 	.dice[value="4"] {
 		background-image: url("img/4.png");
 	}
 
-	/* Würfel mit dem Wert 5 */
+	
 	.dice[value="5"] {
 		background-image: url("img/5.png");
 	}
 
-	/* Würfel mit dem Wert 6 */
+	
 	.dice[value="6"] {
 		background-image: url("img/6.png");
 	}
 
-	/* Würfel Darstellung wenn dieser gehalten wird */
+	/* Gehaltene Würfel werden farblich hervorgehoben. */
 	.dice[data-hold] {
 		border-color: red;
 		opacity: 0.5;
 	}
 
-	/* Mouseover über einen Würfel */
+	
 	.dice:hover {
 		box-shadow: 0 0 8px black;
 		transform: scale(1.2);
 	}
 
-	/* Darstellung des Buttons */
+	
 	#roll {
 		cursor: pointer;
 		display: block;
 		padding: 10px;
-		/* Zentriert den Würfel-Button und setzt einen Abstand zu den Würfeln und der Wertetabelle */
+		
 		margin: 10px auto;
 	}
 
-	/* Deaktivierter Button */
+	
 	#roll:disabled {
 		background-color: #ccc;
 		cursor: not-allowed;
 		color: #666;
 	}
 
-	/* Tabelle darstellen */
+	
 	table {
 		width: 100%;
-		/* Führt die Rahmen der Tabellenzellen und den der Tabelle zusammen (die sichtbaren Abstände verschwinden). */
+		
 		border-collapse: collapse;
 	}
 
@@ -100,7 +100,7 @@
 		padding: 10px;
 	}
 
-	/* Felder bei einem Mouseover hervorheben (außer den schreibgeschützten Feldern #score und #bonus) */
+	/* Hover-Effekt nur für auswählbare Wertungsfelder. */
 	td:not(#score):not(#bonus) {
 		cursor: pointer;
 	}

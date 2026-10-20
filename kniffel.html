@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="de">
 	<head>
-		<!-- Titel im Browser -->
+		
 		<title>Kniffel - Praktikantenaufgabe</title>
 
-		<!-- Zeichenkodierung bestimmen -->
+		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-		<!-- Stylesheet und Javascript einbinden -->
+		
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<script type="text/javascript" src="script.js"></script>
 	</head>
 	<body>
 		<div class="container">
-			<!-- Alle Würfel -->
+			<!-- Fünf Würfel; die Auswahl wird im Attribut data-hold gespeichert. -->
 			<button class="dice" onclick="toggleDice(this)"></button>
-			<!-- this ist der Zeiger auf das HTML Element, welches das Ereignis, hier onclick, auslöst -->
+			
 			<button class="dice" onclick="toggleDice(this)"></button>
 			<button class="dice" onclick="toggleDice(this)"></button>
 			<button class="dice" onclick="toggleDice(this)"></button>
 			<button class="dice" onclick="toggleDice(this)"></button>
 
-			<!-- Button zum Würfeln -->
+			
 			<button id="roll" onclick="rollDices()">Würfeln</button>
 
-			<!-- Wertetabelle -->
+			<!-- Wertungstabelle mit 13 Kategorien sowie Bonus und Gesamtsumme. -->
 			<table>
 				<tbody>
-					<!-- Alle Einser zählen -->
+					
 					<tr>
 						<th>Einser</th>
 						<td onclick="assignDices(this, 1)"></td>
 					</tr>
 
-					<!-- Alle Zweier zählen -->
+					
 					<tr>
 						<th>Zweier</th>
 						<td onclick="assignDices(this, 2)"></td>
 					</tr>
 
-					<!-- Punktefelder für Dreier, Vierer, Fünfer, Sechser, Dreierpasch und Viererpasch -->
+					
 					<tr>
 						<th>Dreier</th>
 						<td onclick="assignDices(this, 3)"></td>
@@ -70,7 +70,7 @@
 						<td onclick="assignDices(this, 'Viererpasch')"></td>
 					</tr>
 
-					<!-- Zusätzliche Punktefelder für die Zusatzaufgaben 11-15 -->
+					
 					<tr>
 						<th>Full House</th>
 						<td onclick="assignDices(this, 'FullHouse')"></td>
@@ -96,13 +96,13 @@
 						<td onclick="assignDices(this, 'Chance')"></td>
 					</tr>
 
-					<!-- Bonus-Feld (für 35 Bonuspunkte bei mindestens 63 Punkten im oberen Bereich) -->
+					<!-- 35 Bonuspunkte ab 63 Punkten im oberen Bereich. -->
 					<tr>
 						<th>Bonus</th>
 						<td id="bonus">0</td>
 					</tr>
 
-					<!-- Gesamtpunktzahl -->
+					
 					<tr>
 						<th>Gesamt</th>
 						<td id="score">0</td>
