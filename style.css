@@ -100,7 +100,7 @@
 		padding: 10px;
 	}
 
-	/* Hover-Effekt nur für auswählbare Wertungsfelder. */
+	/* Hover-Effekt für Wertungszellen, ausgenommen Bonus und Gesamtsumme. */
 	td:not(#score):not(#bonus) {
 		cursor: pointer;
 	}
