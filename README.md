@@ -1,58 +1,64 @@
 # Kniffel – JavaScript-Übungsprojekt
 
-Ein kleines, im Browser spielbares Kniffel-Projekt mit **HTML, CSS und Vanilla JavaScript**. Der Fokus liegt auf Spielregeln, Zustandsverwaltung, DOM-Interaktionen und der nachvollziehbaren Punkteberechnung – ohne Frameworks, Backend oder externe Bibliotheken.
+Ein browserbasiertes Würfelspiel mit **HTML, CSS und JavaScript (ohne Framework)**. Im Mittelpunkt stehen DOM-Ereignisse, die Verwaltung der aktuellen Würfelwerte und die Punkteberechnung nach Kniffel-Regeln.
 
 ## Vorschau
 
-![Kniffel im Browser nach dem ersten Wurf](docs/kniffel-screenshot.png)
+Das Spiel besteht aus fünf Würfeln und einer Wertungstabelle mit 13 Kategorien. Nach dem Würfeln können einzelne Würfel durch Anklicken festgehalten und die erzielten Punkte einer Kategorie zugeordnet werden.
 
-<!-- Optional nach eigener Aufnahme ergänzen: 
-## Kurzvideo
-Kurze Bildschirmaufnahme: Würfel werfen und halten, Punkte zuweisen und das Würfelprotokoll anzeigen.
-[Hier die echte GitHub-Asset-Adresse nach dem Upload einfügen.]
+<!-- Optional: Nach dem Hochladen einer echten Aufnahme hier ergänzen:
+## Kurze Videodemo
+Die Bildschirmaufnahme zeigt das Würfeln, das Festhalten einzelner Würfel sowie die Zuordnung und Berechnung der Punkte.
+[Video auf GitHub ansehen](HIER_DEN_ECHTEN_VIDEO_LINK_EINFÜGEN)
 -->
 
 ## Funktionen
 
-- Fünf Würfel mit grafischen Würfelsymbolen (keine Bilddateien nötig).
-- Bis zu drei Würfe pro Runde; nach dem ersten Wurf lassen sich einzelne Würfel halten.
-- Einmalige Vergabe der 13 Wertungskategorien, **auch bei 0 Punkten**.
-- Berechnung von Einsern bis Sechsern, Dreier-/Viererpasch, Full House, kleiner/großer Straße, Kniffel und Chance.
-- Einmaliger Bonus von 35 Punkten ab 63 Punkten im oberen Block.
-- Anzeige von Gesamtpunktzahl, Spielstatus und Würfelwerten zum Zeitpunkt jeder Eintragung.
-- Erkennung des Spielendes und Neustart ohne Neuladen der Seite.
-- Bedienbare Wertungsfelder auch per Tastatur (Enter/Leertaste).
+- Fünf Würfel mit Bildern aus dem lokalen `img/`-Ordner (`1.png` bis `6.png`).
+- Zufällige Würfelwerte und Festhalten bzw. Freigeben einzelner Würfel nach dem ersten Wurf.
+- Wertung für Einser bis Sechser, Dreier- und Viererpasch, Full House, kleine und große Straße, Kniffel sowie Chance.
+- 35 Bonuspunkte, sobald der obere Tabellenbereich mindestens 63 Punkte erreicht.
+- Anzeige der Gesamtpunktzahl.
+- Spielende-Meldung und Deaktivierung des Würfelbuttons, wenn alle Wertungsfelder belegt sind.
 
 ## Lokal starten
 
-1. Die Dateien `kniffel.html`, `style.css` und `script.js` in **demselben Ordner** ablegen.
-2. `kniffel.html` doppelklicken und in einem aktuellen Browser öffnen.
-3. Auf **Würfeln** klicken, nach Bedarf Würfel halten und eine freie Kategorie der Punktetabelle auswählen.
+1. Das Repository herunterladen oder klonen.
+2. `kniffel.html` in einem Browser öffnen. Ein Webserver, ein Login oder eine Installation sind nicht erforderlich.
+3. Auf **Würfeln** klicken, bei Bedarf Würfel durch Anklicken halten und eine Kategorie in der Punktetabelle wählen.
 
-**Voraussetzungen:** Keine Installation, kein Server, keine Datenbank, kein Login. Die Würfel werden als Unicode-Symbole angezeigt; je nach Betriebssystem und Schriftart kann das Aussehen leicht variieren.
+**Wichtig:** Die Dateien `kniffel.html`, `script.js` und `style.css` müssen zusammen mit dem Ordner `img/` vorliegen, da die Würfel über Bilddateien dargestellt werden.
 
-## Technischer Aufbau
+## Projektstruktur
 
-| Datei | Inhalt |
-| --- | --- |
-| `kniffel.html` | Seitenstruktur, Spielsteuerung, Wertungstabelle und Würfelprotokoll |
-| `style.css` | Responsive Layout, Würfeldarstellung, Halte-/Fokuszustände |
-| `script.js` | Würfeln, Zustandsverwaltung, Punkteberechnung, Bonus, Historie und Neustart |
+```text
+Kniffel-JavaScript/
+├── kniffel.html
+├── script.js
+├── style.css
+├── img/
+│   ├── 1.png
+│   ├── 2.png
+│   ├── 3.png
+│   ├── 4.png
+│   ├── 5.png
+│   └── 6.png
+└── README.md
+```
 
-**Umgesetzte Logik:** Der Zustand wird in JavaScript verwaltet (`rolled`, `values`, `upperScore`, `gameOver`). Bereits belegte Wertungsfelder erhalten das Attribut `data-assigned`; dadurch bleibt auch eine Eintragung mit 0 Punkten endgültig vergeben. Die fünf Würfelwerte werden bei jeder Wertung vor dem Zurücksetzen protokolliert.
+## Technische Umsetzung
 
-## Beispielablauf
+- **HTML:** Fünf Würfelbuttons, Würfelsteuerung und Wertungstabelle.
+- **CSS:** Würfelbilder, Kennzeichnung gehaltener Würfel und Layout der Tabelle.
+- **JavaScript:** Ereignisbehandlung, Spielzustand (`rolled`, `values`, `upperScore`), Häufigkeitszählung und Punkteberechnung.
+- **Interaktion:** Die Wertungen werden per DOM-Aktion aktualisiert; dazu gehören auch die Berechnung des Bonus und die Prüfung des Spielendes.
 
-1. Erster Wurf: Alle fünf Würfel erhalten Werte zwischen 1 und 6.
-2. Optional: Würfel anklicken, um sie für den nächsten Wurf festzuhalten.
-3. Spätestens nach dem dritten Wurf eine noch freie Wertungskategorie auswählen.
-4. Punkte, Gesamtstand und Eintrag im **Würfelprotokoll** werden aktualisiert.
-5. Sind alle 13 Kategorien belegt, ist das Spiel beendet. Über **Neues Spiel** kann eine neue Runde begonnen werden.
+## Aktuelle Einschränkungen
 
-## Prüfung und bekannte Grenzen
+Die hochgeladene Version bildet die unten genannten Regeln noch **nicht vollständig** ab:
 
-Die wesentlichen Spielfälle wurden interaktiv im Browser geprüft (u. a. Wurflimit, festgehaltene Würfel, 0-Punkte-Feld, Wertungen, Bonus und Spielende). **Ein automatisiertes Test-Framework ist in diesem Repository derzeit nicht enthalten.**
+- Die Zahl der Würfe je Spielzug wird gezählt, aber nicht auf maximal drei begrenzt.
+- Eine bereits mit **0 Punkten** belegte Kategorie kann erneut ausgewählt werden.
+- Die fünf Würfelwerte werden beim Eintragen einer Kategorie nicht dauerhaft protokolliert.
 
-Die aktuelle Version ist ein lokales Einzelspieler-Demo. Sie bietet keine Mehrspielerfunktion, dauerhafte Speicherung oder serverseitige Datenverarbeitung. Sonderregeln verschiedener Kniffel-Ausgaben können abweichen.
-
-
+Es handelt sich um ein lokales Einzelspieler-Übungsprojekt ohne automatische Tests, dauerhafte Speicherung oder Mehrspielerfunktion. Eine neue Partie kann durch erneutes Laden der Seite gestartet werden.
