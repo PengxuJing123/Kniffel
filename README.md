@@ -62,3 +62,9 @@ Die hochgeladene Version bildet die unten genannten Regeln noch **nicht vollstä
 - Die fünf Würfelwerte werden beim Eintragen einer Kategorie nicht dauerhaft protokolliert.
 
 Es handelt sich um ein lokales Einzelspieler-Übungsprojekt ohne automatische Tests, dauerhafte Speicherung oder Mehrspielerfunktion. Eine neue Partie kann durch erneutes Laden der Seite gestartet werden.
+
+## Projekthintergrund
+
+Das Projekt entstand als Bearbeitung einer Programmieraufgabe im Bewerbungsverfahren auf Grundlage eines bereitgestellten Ausgangsgerüsts. Die Vorlage enthielt bereits Grundfunktionen für Würfeln, Halten einzelner Würfel und einfache Wertungen. Weitere Regeln und Wertungen wurden im Rahmen der Bearbeitung ergänzt.
+
+**Hinweis:** Vor einer öffentlichen Veröffentlichung ist zu klären, ob der vorgegebene Ausgangscode und die mitgelieferten Grafiken veröffentlicht werden dürfen. Die Übungsvorlage sollte nicht als vollständig eigenständig entwickeltes Projekt ausgegeben werden.
