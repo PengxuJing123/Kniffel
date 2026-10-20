@@ -55,8 +55,4 @@ Die wesentlichen Spielfälle wurden interaktiv im Browser geprüft (u. a. Wurfli
 
 Die aktuelle Version ist ein lokales Einzelspieler-Demo. Sie bietet keine Mehrspielerfunktion, dauerhafte Speicherung oder serverseitige Datenverarbeitung. Sonderregeln verschiedener Kniffel-Ausgaben können abweichen.
 
-## Herkunft und eigener Beitrag
 
-Das Projekt wurde aus einer **im Bewerbungsverfahren bereitgestellten Kniffel-Programmieraufgabe mit vorgegebenem Grundgerüst** weiterentwickelt. Der vorhandene Stand enthält Änderungen und Ergänzungen an Spielregeln, Punktezuteilung, Zustandsverwaltung, Oberfläche und Würfelprotokoll. Das ursprünglich bereitgestellte Grundgerüst ist **keine vollständig eigenständig entwickelte Neuentwicklung**.
-
-**Hinweis zur Veröffentlichung:** Vor einem öffentlichen Upload prüfen, ob die Veröffentlichung des bereitgestellten Ausgangscodes durch den ursprünglichen Aufgabensteller erlaubt ist. Falls nicht, nur eine unabhängig neu implementierte Fassung veröffentlichen.
